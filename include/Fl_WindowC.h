@@ -1,6 +1,5 @@
 #ifndef __FL_WINDOW_C__
 #define __FL_WINDOW_C__
-#include <Fl_Window.H>
 #include "flkc.h"
 #include "flkc_types.h"
 
@@ -8,7 +7,7 @@
 extern "C" {
 #endif
 
-typedef fl_window_t flkc_t;
+typedef flkc_t fl_window_t;
 
 /* Unimplemented */
 /* These functions are currently unimplemented do to the fact that they depends
@@ -21,34 +20,26 @@ void    hotspot (const Fl_Widget &p, int offscreen=0)
 #endif
 
 // Fl_Window (int w, int h, const char *title=0)
-fl_window_t fl_window_new(fl_window_t* win, int w, int h, const char* title);
+fl_window_t fl_window_new(int w, int h, const char* title);
 
 // Fl_Window (int x, int y, int w, int h, const char *title=0)
-fl_window_t fl_window_new_with_coords(fl_window_t* win, int x, int y, int w, int h, const char* title);
+fl_window_t fl_window_new_with_coords(int x, int y, int w, int h, const char* title);
 
 // virtual ~Fl_Window()
-flkc_t fl_window_free(fl_window_t* win);
-
-// virtual Fl_Window *     as_window ()
-fl_window_t fl_obj_as_window(flkc_t* obj);
+void fl_window_free(fl_window_t* win);
 
 /* Virtual Methods */
 
 /* Handle an event */
 int fl_window_handle(fl_window_t win, int ev);
-int fl_obj_handle(flkc_t* obj, int ev);
 
-/* hide */
-flkc_t fl_window_hide(fl_window_t win);
-flkc_t fl_obj_hide(flkc_t* obj);
+void fl_window_hide(fl_window_t win);
 
 /* resize */
-flkc_t fl_window_resize(fl_window_t win, int x, int y, int w, int h);
-flkc_t fl_obj_resize(flkc_t* obj, int x, int y, int w, int h);
+void fl_window_resize(fl_window_t win, int x, int y, int w, int h);
 
 /* show */
-flkc_t fl_window_show(fl_window_t win);
-flkc_t fl_obj_show(flkc_t* obj);
+void fl_window_show(fl_window_t win);
 
 fl_window_t fl_window_current();
 
@@ -70,12 +61,11 @@ unsigned fl_window_override(fl_window_t win);
 unsigned fl_window_tooltip_window(fl_window_t win);
 void fl_window_border_set(fl_window_t win, int border);
 void fl_window_clear_border(fl_window_t win);
-void fl_window_copy_label(const char* a);
-void fl_window_default_callback(fl_window_t win, void* v);
+void fl_window_copy_label(fl_window_t win, const char* a);
 void fl_window_free_position(fl_window_t win);
 void fl_window_fullscreen(fl_window_t win);
 void fl_window_fullscreen_off(fl_window_t, int, int, int, int);
-void fl_window_hotspot(flw_window_t win, int x, int y, int offscreen);
+void fl_window_hotspot(fl_window_t win, int x, int y, int offscreen);
 void fl_window_iconize(fl_window_t win);
 void fl_window_label_set(fl_window_t win, const char* label);
 void fl_window_label_set_with_icon(fl_window_t win, const char* label, const char* iconlabel);
@@ -86,7 +76,7 @@ void fl_window_set_modal(fl_window_t win);
 void fl_window_set_non_modal(fl_window_t win);
 void fl_window_set_override(fl_window_t win);
 void fl_window_set_tooltip_window(fl_window_t win);
-void fl_window_show(int argc, char** argv);
+void fl_window_show_with_args(fl_window_t win, int argc, char** argv);
 void fl_window_size_range(fl_window_t win, int a, int b, int c, int d, int e, int f, int g);
 
 #ifdef __cplusplus
